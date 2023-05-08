@@ -7,6 +7,9 @@
 		"javascript",	
         "javascriptreact"
     ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },

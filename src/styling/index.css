@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+.cardGrid {
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0 50px 0;
+}
