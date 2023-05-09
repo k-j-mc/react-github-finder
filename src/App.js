@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { PropTypes } from "prop-types";
 
 import { SnackbarProvider } from "notistack";
 
@@ -12,6 +13,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import Users from "./components/Users";
+import NoUser from "./components/Users/NoUser";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -29,11 +31,13 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
+		setLoading(true);
+
 		if (status === "succeeded") {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
-		} else {
+		} else if (error) {
 			console.log(error);
 		}
 	}, [status]);
@@ -42,7 +46,12 @@ const App = () => {
 
 	const handleSearch = () => {
 		dispatch(getUsers(searchQuery));
+	};
+
+	const clearUsers = () => {
 		setSearchQuery("");
+		setLoading(true);
+		dispatch(getUsers());
 	};
 
 	return (
@@ -62,12 +71,26 @@ const App = () => {
 					searchQuery={searchQuery}
 					setSearchQuery={setSearchQuery}
 					handleSearch={handleSearch}
+					clearUsers={clearUsers}
 				/>
-
-				<Users users={data} loading={loading} />
+				{data.length > 0 ? (
+					<Users users={data} loading={loading} />
+				) : (
+					<NoUser />
+				)}
 			</ThemeProvider>
 		</SnackbarProvider>
 	);
+};
+
+App.defaultProps = {
+	searchQuery: "",
+	loading: true,
+};
+
+App.propTypes = {
+	searchQuery: PropTypes.string.isRequired,
+	loading: PropTypes.bool.isRequired,
 };
 
 export default App;

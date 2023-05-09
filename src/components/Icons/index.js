@@ -13,6 +13,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Search from "@mui/icons-material/Search";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import ShareIcon from "@mui/icons-material/Share";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
@@ -38,13 +39,16 @@ const Icons = {
 	Search: forwardRef((props, ref) => (
 		<Search {...props} ref={ref} style={{ color: "#FFFFFF" }} />
 	)),
+	Seen: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
+	Sad: forwardRef((props, ref) => (
+		<SentimentDissatisfiedIcon {...props} ref={ref} />
+	)),
 	Share: forwardRef((props, ref) => (
 		<ShareIcon {...props} ref={ref} style={{ color: "#FFFFFF" }} />
 	)),
 	True: forwardRef((props, ref) => (
 		<DoneIcon {...props} ref={ref} style={{ color: "#4caf50" }} />
 	)),
-	Seen: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
 	Up: forwardRef((props, ref) => (
 		<KeyboardArrowUpIcon {...props} ref={ref} />
 	)),

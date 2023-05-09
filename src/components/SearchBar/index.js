@@ -4,7 +4,12 @@ import { Button, Grid, IconButton, TextField } from "@mui/material";
 
 import Icons from "../Icons";
 
-const SearchBar = ({ searchQuery, setSearchQuery, handleSearch }) => {
+const SearchBar = ({
+	clearUsers,
+	handleSearch,
+	searchQuery,
+	setSearchQuery,
+}) => {
 	return (
 		<Grid container spacing={2} className="searchGrid">
 			<Grid item xs={1} />
@@ -20,9 +25,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, handleSearch }) => {
 						endAdornment: (
 							<>
 								{searchQuery !== "" && (
-									<IconButton
-										onClick={() => setSearchQuery("")}
-									>
+									<IconButton onClick={clearUsers}>
 										<Icons.Close />
 									</IconButton>
 								)}
