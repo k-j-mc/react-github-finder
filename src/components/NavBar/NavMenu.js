@@ -33,16 +33,16 @@ const NavMenu = (props) => {
 			onClose={handleCloseMenu}
 			className="menu"
 		>
-			<Link to={"/"} className="menuLink">
-				<MenuItem onClick={handleTheme} className="menuItem">
+			<Link to={"/"} className="linkTo">
+				<MenuItem onClick={handleCloseMenu} className="menuItem">
 					<Icons.Home className="menuItemIcon" />
 					Home
 				</MenuItem>
 			</Link>
 			<Divider />
 
-			<Link to={"/about"} className="menuLink">
-				<MenuItem onClick={handleTheme} className="menuItem">
+			<Link to={"/about"} className="linkTo">
+				<MenuItem onClick={handleCloseMenu} className="menuItem">
 					<Icons.About className="menuItemIcon" />
 					About
 				</MenuItem>

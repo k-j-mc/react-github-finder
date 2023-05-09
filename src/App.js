@@ -18,6 +18,7 @@ import NavBar from "./components/NavBar";
 
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
+import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
@@ -93,6 +94,12 @@ const App = () => {
 							}
 						/>
 						<Route exact path="/about" element={<AboutPage />} />
+						<Route
+							exact
+							path="/user/:name"
+							element={<UserPage />}
+						/>
+
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>
 				</ThemeProvider>
