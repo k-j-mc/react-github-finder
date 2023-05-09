@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 
 import Loader from "../Loader";
+import NoUser from "./NoUser";
 
 import UserItem from "./UserItem";
 
 const Users = ({ users, loading }) => {
 	if (loading) {
 		return <Loader />;
-	} else {
+	} else if (!loading && users.length > 0) {
 		return (
 			<Grid container spacing={2} className="cardGrid">
 				{users.map((user) => (
@@ -28,6 +29,8 @@ const Users = ({ users, loading }) => {
 				))}
 			</Grid>
 		);
+	} else {
+		return <NoUser />;
 	}
 };
 

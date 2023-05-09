@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 import { SnackbarProvider } from "notistack";
 
@@ -14,9 +15,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Notifications from "./components/Notifications";
 import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
-import Users from "./components/Users";
-import NoUser from "./components/Users/NoUser";
+
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -61,32 +63,41 @@ const App = () => {
 	};
 
 	return (
-		<SnackbarProvider
-			maxSnack={3}
-			anchorOrigin={{
-				vertical: "top",
-				horizontal: "center",
-			}}
-			autoHideDuration={2000}
-		>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<Notifications />
-				<NavBar />
+		<BrowserRouter>
+			<SnackbarProvider
+				maxSnack={3}
+				anchorOrigin={{
+					vertical: "top",
+					horizontal: "center",
+				}}
+				autoHideDuration={2000}
+			>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<Notifications />
+					<NavBar />
 
-				<SearchBar
-					searchQuery={searchQuery}
-					setSearchQuery={setSearchQuery}
-					handleSearch={handleSearch}
-					clearUsers={clearUsers}
-				/>
-				{data.length > 0 ? (
-					<Users users={data} loading={loading} />
-				) : (
-					<NoUser />
-				)}
-			</ThemeProvider>
-		</SnackbarProvider>
+					<Routes>
+						<Route
+							exact
+							path="/"
+							element={
+								<HomePage
+									data={data}
+									clearUsers={clearUsers}
+									handleSearch={handleSearch}
+									loading={loading}
+									searchQuery={searchQuery}
+									setSearchQuery={setSearchQuery}
+								/>
+							}
+						/>
+						<Route exact path="/about" element={<AboutPage />} />
+						<Route path="*" element={<ErrorPage />} />
+					</Routes>
+				</ThemeProvider>
+			</SnackbarProvider>
+		</BrowserRouter>
 	);
 };
 
