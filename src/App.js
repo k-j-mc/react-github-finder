@@ -5,11 +5,14 @@ import { SnackbarProvider } from "notistack";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getTheme } from "./reducers/themeSlice";
+import { sendNotification } from "./reducers/notificationsSlice";
+
 import { getUsers } from "./reducers/usersSlice";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
+import Notifications from "./components/Notifications";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import Users from "./components/Users";
@@ -37,10 +40,13 @@ const App = () => {
 			setTimeout(() => {
 				setLoading(false);
 			}, 500);
-		} else if (error) {
-			console.log(error);
 		}
-	}, [status]);
+		if (data.message) {
+			dispatch(
+				sendNotification({ message: data.message, variant: "error" })
+			);
+		}
+	}, [status, data]);
 
 	const theme = createTheme(themeData);
 
@@ -65,6 +71,7 @@ const App = () => {
 		>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
+				<Notifications />
 				<NavBar />
 
 				<SearchBar
