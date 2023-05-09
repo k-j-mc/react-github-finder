@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material/";
 
@@ -6,9 +7,7 @@ import NavMenu from "./NavMenu";
 
 import Icons from "../Icons";
 
-const NavBar = (props) => {
-	const { title } = props;
-
+const NavBar = ({ title }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const openMenu = Boolean(anchorEl);
@@ -45,6 +44,14 @@ const NavBar = (props) => {
 			<div className="appBarShadow" />
 		</Box>
 	);
+};
+
+NavBar.defaultProps = {
+	title: "Github Finder",
+};
+
+NavBar.propTypes = {
+	title: PropTypes.string.isRequired,
 };
 
 export default NavBar;

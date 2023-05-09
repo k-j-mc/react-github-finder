@@ -6,8 +6,33 @@ body {
     overflow-x: hidden;
 }
 
+.gridCenterItems {
+    padding: 30px 0 30px 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .cardGrid {
     align-items: center;
     justify-content: center;
-    padding: 50px 0 50px 0;
+    padding: 50px 50px 50px 50px;
+}
+
+.userCard {
+    width: 100%;
+}
+
+.cardImage {
+    height: 200px;
+    width: 100%;
+    object-fit: fill;
+}
+
+
+.loaderCircle {
+    color: #dc3545 !important;
+    top: 50%;
+    left: 50%;
+    margin-bottom: 30px;
 }

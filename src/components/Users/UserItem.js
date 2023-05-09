@@ -1,49 +1,44 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import {
-	Avatar,
 	Button,
 	Card,
 	CardActions,
-	CardActionArea,
 	CardContent,
 	CardMedia,
 	Link,
 	Typography,
 } from "@mui/material";
 
-import IMG from "../../images/avatardemoimage.png";
-
 import "./index.css";
 
-const UserItem = (props) => {
+const UserItem = ({ user: { login, avatar_url, html_url } }) => {
 	return (
-		<Card sx={{ maxWidth: 345 }}>
-			<CardActionArea>
-				<CardMedia
-					component="img"
-					height="140"
-					image={IMG}
-					alt="git user"
-				/>
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="div">
-						Git user
-					</Typography>
-					<Typography variant="body2" color="text.secondary">
-						Info about user...
-					</Typography>
-				</CardContent>
-			</CardActionArea>
+		<Card>
+			<CardMedia title={login} image={avatar_url} className="cardImage" />
+			<CardContent>
+				<Typography gutterBottom variant="h5" component="div">
+					{login}
+				</Typography>
+				<Typography variant="body2" color="text.secondary">
+					Info about user...
+				</Typography>
+			</CardContent>
+
 			<CardActions>
-				<Link href="" underline="none">
-					<Button size="small" color="primary">
+				<Button size="small" color="primary">
+					<Link href={html_url} underline="none">
 						More info
-					</Button>
-				</Link>
+					</Link>
+				</Button>
 			</CardActions>
 		</Card>
 	);
+};
+
+UserItem.propTypes = {
+	user: PropTypes.object.isRequired,
 };
 
 export default UserItem;
