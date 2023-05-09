@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import NavBar from "./components/NavBar";
-import Loader from "./components/Loader";
+import SearchBar from "./components/SearchBar";
 import Users from "./components/Users";
 
 const App = () => {
@@ -21,6 +21,8 @@ const App = () => {
 
 	const [loading, setLoading] = useState(true);
 
+	const [searchQuery, setSearchQuery] = useState("");
+
 	useEffect(() => {
 		dispatch(getTheme());
 		dispatch(getUsers());
@@ -28,13 +30,20 @@ const App = () => {
 
 	useEffect(() => {
 		if (status === "succeeded") {
-			setLoading(false);
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 		} else {
 			console.log(error);
 		}
 	}, [status]);
 
 	const theme = createTheme(themeData);
+
+	const handleSearch = () => {
+		dispatch(getUsers(searchQuery));
+		setSearchQuery("");
+	};
 
 	return (
 		<SnackbarProvider
@@ -49,7 +58,13 @@ const App = () => {
 				<CssBaseline />
 				<NavBar />
 
-				{loading ? <Loader /> : <Users users={data} />}
+				<SearchBar
+					searchQuery={searchQuery}
+					setSearchQuery={setSearchQuery}
+					handleSearch={handleSearch}
+				/>
+
+				<Users users={data} loading={loading} />
 			</ThemeProvider>
 		</SnackbarProvider>
 	);

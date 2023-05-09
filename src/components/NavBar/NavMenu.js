@@ -9,8 +9,6 @@ import { Divider, Menu, MenuItem } from "@mui/material";
 
 import Icons from "../Icons";
 
-import "./navBar.css";
-
 const NavMenu = (props) => {
 	const dispatch = useDispatch();
 

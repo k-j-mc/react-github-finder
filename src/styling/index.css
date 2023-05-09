@@ -6,11 +6,56 @@ body {
     overflow-x: hidden;
 }
 
+.appBarShadow {
+    height: 25px;
+    background: linear-gradient(180deg, rgba(241, 68, 86, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.menuIcon {
+    color: #FFFFFF;
+}
+
+.menu {
+    margin-top: 12px;
+}
+
+.menuItem {
+    height: 40px;
+}
+
+.menuItemIcon {
+    margin-right: 15px;
+}
+
+.menuLink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.appIcon {
+    margin-right: 30px;
+    transform: scale(1.8);
+    color: #FFFFFF;
+}
+
 .gridCenterItems {
     padding: 30px 0 30px 0;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.searchGrid {
+    padding: 40px 0 20px 0;
+}
+
+.inputRounded .MuiOutlinedInput-root {
+    border-radius: 200px;
+    height: 37px;
+}
+
+.searchButton {
+    width: 100%;
 }
 
 .cardGrid {
@@ -27,6 +72,10 @@ body {
     height: 200px;
     width: 100%;
     object-fit: fill;
+}
+
+.cardActions {
+    justify-content: center;
 }
 
 
