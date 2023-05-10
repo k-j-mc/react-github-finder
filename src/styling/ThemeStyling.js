@@ -42,6 +42,14 @@ const ThemeStyling = {
 				},
 			},
 		},
+		MuiAvatar: {
+			styleOverrides: {
+				root: {
+					width: "150px",
+					height: "150px",
+				},
+			},
+		},
 	},
 };
 

@@ -77,9 +77,8 @@ body {
 }
 
 .cardImage {
-    height: 200px;
-    width: 100%;
-    object-fit: fill;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
 .cardActions {
@@ -100,6 +99,40 @@ body {
 }
 
 .backwardsNav {
+    position: absolute;
     padding-top: 40px;
     margin-bottom: -70px
+}
+
+
+/* USER PAGE  */
+
+.pageInfoCard {
+    margin: 30px 0 0 0;
+}
+
+.pageInfoContent {
+    margin: 30px;
+}
+
+.userAvatar {
+    transform: scale(1.3);
+    margin: 0 0 50px 20px;
+}
+
+.trueFalseIcon {
+    margin: 0 0 -7px 3px;
+}
+
+.profileLink {
+    top: -6px;
+    right: 8px;
+}
+
+.aboutChip {
+    margin: 0 20px 20px 0;
+}
+
+.pageSocialContent {
+    margin: 10px 0 -30px 0;
 }

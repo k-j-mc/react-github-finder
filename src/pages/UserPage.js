@@ -1,43 +1,48 @@
-import React from "react";
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
-import { Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid } from "@mui/material";
 
 import Loader from "../components/Loader";
-
 import BackButton from "../components/BackButton";
+import InfoCard from "../components/UserPageCards/InfoCard";
+import SocialCard from "../components/UserPageCards/SocialCard";
 
-const InformationPage = (props) => {
-	const loading = props.loading;
-
-	const {
-		name,
-		avatar_url,
-		location,
-		bio,
-		blog,
-		login,
-		html_url,
-		followers,
-		following,
-		public_repos,
-		public_gists,
-		hireable,
-	} = props.user;
+const UserPage = (props) => {
+	const { loading, user } = props;
 
 	return loading ? (
 		<Loader />
 	) : (
-		<>
+		<Fragment>
 			<BackButton />
-			<Grid container spacing={2} className="gridCenterUserItems">
-				<Grid item xs={1} />
-				<Grid item xs={10}>
-					<Typography variant="h5">{login}</Typography>
+			<Grid container spacing={2}>
+				<Grid item xs={1.5} />
+				<Grid item xs={9}>
+					<Card className="pageInfoCard">
+						<CardContent className="pageInfoContent">
+							<InfoCard user={user} />
+						</CardContent>
+					</Card>
 				</Grid>
-				<Grid item xs={1} />
+				<Grid item xs={1.5} />
+
+				<Grid item xs={1.5} />
+				<Grid item xs={9}>
+					<Card>
+						<CardContent className="pageSocialContent">
+							<SocialCard user={user} />
+						</CardContent>
+					</Card>
+				</Grid>
+				<Grid item xs={1.5} />
 			</Grid>
-		</>
+		</Fragment>
 	);
 };
 
-export default InformationPage;
+UserPage.propTypes = {
+	loading: PropTypes.bool.isRequired,
+};
+
+export default UserPage;

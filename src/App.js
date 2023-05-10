@@ -54,7 +54,6 @@ const App = () => {
 	}, [status, data]);
 
 	useEffect(() => {
-		console.log(user);
 		if (user.status === "succeeded") {
 			setTimeout(() => {
 				setLoading(false);

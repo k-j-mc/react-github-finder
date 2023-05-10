@@ -4,22 +4,20 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import {
+	Avatar,
 	Button,
 	Card,
 	CardActions,
 	CardContent,
-	CardMedia,
 	Typography,
 } from "@mui/material";
 
-import "./index.css";
-
 const UserItem = ({ user, getUser }) => {
 	return (
-		<Card>
-			<CardMedia
-				title={user.login}
-				image={user.avatar_url}
+		<Card className="gridCenterItems">
+			<Avatar
+				alt={user.login}
+				src={user.avatar_url}
 				className="cardImage"
 			/>
 			<CardContent>

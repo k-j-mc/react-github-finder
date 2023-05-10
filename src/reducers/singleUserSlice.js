@@ -11,12 +11,17 @@ const initialState = {
 };
 
 export const singleUser = createAsyncThunk("singleUser", async (e) => {
-	const response = await axios
+	const responseInfo = await axios
 		.get(URL + "users/" + e + API)
 		.then((response) => response.data)
 		.catch((error) => error);
 
-	return response;
+	const responseRepos = await axios
+		.get(URL + "users/" + e + "/repos" + API)
+		.then((response) => response.data)
+		.catch((error) => error);
+
+	return { ...responseInfo, responseRepos };
 });
 
 export const singleUserSlice = createSlice({
