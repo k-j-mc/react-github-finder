@@ -7,9 +7,12 @@ import Loader from "../components/Loader";
 import BackButton from "../components/BackButton";
 import InfoCard from "../components/UserPageCards/InfoCard";
 import SocialCard from "../components/UserPageCards/SocialCard";
+import RepoCard from "../components/UserPageCards/RepoCard";
 
 const UserPage = (props) => {
 	const { loading, user } = props;
+
+	const repos = user.repos;
 
 	return loading ? (
 		<Loader />
@@ -32,6 +35,16 @@ const UserPage = (props) => {
 					<Card>
 						<CardContent className="pageSocialContent">
 							<SocialCard user={user} />
+						</CardContent>
+					</Card>
+				</Grid>
+				<Grid item xs={1.5} />
+
+				<Grid item xs={1.5} />
+				<Grid item xs={9}>
+					<Card>
+						<CardContent className="pageSocialContent">
+							<RepoCard repos={repos} />
 						</CardContent>
 					</Card>
 				</Grid>

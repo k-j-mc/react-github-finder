@@ -11,7 +11,7 @@ const SocialCard = (props) => {
 				<Typography paragraph>
 					<strong>Social:</strong>
 				</Typography>
-				{followers && (
+				{followers > 0 && (
 					<Chip
 						label={
 							<>
@@ -23,7 +23,7 @@ const SocialCard = (props) => {
 						color="success"
 					/>
 				)}
-				{following && (
+				{following > 0 && (
 					<Chip
 						label={
 							<>
@@ -35,7 +35,7 @@ const SocialCard = (props) => {
 						color="warning"
 					/>
 				)}
-				{public_repos && (
+				{public_repos > 0 && (
 					<Chip
 						label={
 							<>
@@ -47,7 +47,7 @@ const SocialCard = (props) => {
 						color="info"
 					/>
 				)}
-				{public_gists && (
+				{public_gists > 0 && (
 					<Chip
 						label={
 							<>
