@@ -6,6 +6,7 @@ import Users from "../components/Users";
 const HomePage = ({
 	data,
 	clearUsers,
+	getUser,
 	handleSearch,
 	loading,
 	searchQuery,
@@ -19,7 +20,7 @@ const HomePage = ({
 				handleSearch={handleSearch}
 				clearUsers={clearUsers}
 			/>
-			<Users users={data} loading={loading} />
+			<Users users={data} loading={loading} getUser={getUser} />
 		</Fragment>
 	);
 };

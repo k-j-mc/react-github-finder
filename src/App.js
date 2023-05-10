@@ -9,6 +9,7 @@ import { getTheme } from "./reducers/themeSlice";
 import { sendNotification } from "./reducers/notificationsSlice";
 
 import { getUsers } from "./reducers/usersSlice";
+import { singleUser } from "./reducers/singleUserSlice";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -26,6 +27,7 @@ const App = () => {
 
 	const themeData = useSelector((state) => state.theme.data);
 	const { data, status, error } = useSelector((state) => state.users);
+	const user = useSelector((state) => state.singleUser);
 
 	const [loading, setLoading] = useState(true);
 
@@ -51,6 +53,23 @@ const App = () => {
 		}
 	}, [status, data]);
 
+	useEffect(() => {
+		console.log(user);
+		if (user.status === "succeeded") {
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
+		}
+		if (user.data.message) {
+			dispatch(
+				sendNotification({
+					message: user.data.message,
+					variant: "error",
+				})
+			);
+		}
+	}, [user]);
+
 	const theme = createTheme(themeData);
 
 	const handleSearch = () => {
@@ -61,6 +80,11 @@ const App = () => {
 		setSearchQuery("");
 		setLoading(true);
 		dispatch(getUsers());
+	};
+
+	const getUser = (e) => {
+		setLoading(true);
+		dispatch(singleUser(e));
 	};
 
 	return (
@@ -90,14 +114,17 @@ const App = () => {
 									loading={loading}
 									searchQuery={searchQuery}
 									setSearchQuery={setSearchQuery}
+									getUser={getUser}
 								/>
 							}
 						/>
 						<Route exact path="/about" element={<AboutPage />} />
 						<Route
 							exact
-							path="/user/:name"
-							element={<UserPage />}
+							path="/user/:login"
+							element={
+								<UserPage user={user.data} loading={loading} />
+							}
 						/>
 
 						<Route path="*" element={<ErrorPage />} />

@@ -14,7 +14,7 @@ import {
 
 import "./index.css";
 
-const UserItem = ({ user }) => {
+const UserItem = ({ user, getUser }) => {
 	return (
 		<Card>
 			<CardMedia
@@ -38,7 +38,7 @@ const UserItem = ({ user }) => {
 					<Link
 						to={`/user/${user.login}`}
 						className="linkTo"
-						state={user}
+						onClick={() => getUser(user.login)}
 					>
 						More info
 					</Link>

@@ -8,7 +8,7 @@ import NoUser from "./NoUser";
 
 import UserItem from "./UserItem";
 
-const Users = ({ users, loading }) => {
+const Users = ({ users, loading, getUser }) => {
 	if (loading) {
 		return <Loader />;
 	} else if (!loading && users.length > 0) {
@@ -24,7 +24,7 @@ const Users = ({ users, loading }) => {
 						className="userCard"
 						key={user.id}
 					>
-						<UserItem user={user} />
+						<UserItem user={user} getUser={getUser} />
 					</Grid>
 				))}
 			</Grid>

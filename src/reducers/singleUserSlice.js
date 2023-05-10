@@ -12,8 +12,8 @@ const initialState = {
 
 export const singleUser = createAsyncThunk("singleUser", async (e) => {
 	const response = await axios
-		.get(API + "users/" + e + URL)
-		.then((response) => (e ? response.data.items : response.data))
+		.get(URL + "users/" + e + API)
+		.then((response) => response.data)
 		.catch((error) => error);
 
 	return response;
