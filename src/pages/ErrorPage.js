@@ -4,16 +4,16 @@ import { Typography } from "@mui/material";
 
 import BackButton from "../components/BackButton";
 
-import Icons from "../components/Icons";
+const ErrorPage = (props) => {
+	const { message, icon } = props;
 
-const ErrorPage = () => {
 	return (
 		<Fragment>
 			<BackButton />
 			<div className="gridCenterItems">
-				<Icons.WrongLocation className="noResultIcon" />
+				{icon}
 				<Typography paragraph>Uh oh...</Typography>
-				<Typography paragraph>Page not found</Typography>
+				<Typography paragraph>{message}</Typography>
 			</div>
 		</Fragment>
 	);

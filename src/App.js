@@ -22,6 +22,8 @@ import AboutPage from "./pages/AboutPage";
 import UserPage from "./pages/UserPage";
 import ErrorPage from "./pages/ErrorPage";
 
+import Icons from "./components/Icons";
+
 const App = () => {
 	const dispatch = useDispatch();
 
@@ -126,7 +128,17 @@ const App = () => {
 							}
 						/>
 
-						<Route path="*" element={<ErrorPage />} />
+						<Route
+							path="*"
+							element={
+								<ErrorPage
+									message="Page not found"
+									icon={
+										<Icons.WrongLocation className="noResultIcon" />
+									}
+								/>
+							}
+						/>
 					</Routes>
 				</ThemeProvider>
 			</SnackbarProvider>

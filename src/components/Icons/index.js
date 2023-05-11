@@ -11,6 +11,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import LinkIcon from "@mui/icons-material/Link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -43,12 +44,12 @@ const Icons = {
 	Home: forwardRef((props, ref) => <HomeIcon {...props} ref={ref} />),
 	About: forwardRef((props, ref) => <InfoIcon {...props} ref={ref} />),
 	LightMode: forwardRef((props, ref) => <LightModeIcon {...props} />),
+	Link: forwardRef((props, ref) => <LinkIcon {...props} />),
 	Menu: forwardRef((props, ref) => <MenuIcon {...props} ref={ref} />),
 	MoreVert: forwardRef((props, ref) => <MoreVertIcon {...props} ref={ref} />),
 	Search: forwardRef((props, ref) => (
 		<Search {...props} ref={ref} style={{ color: "#FFFFFF" }} />
 	)),
-	Seen: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
 	Sad: forwardRef((props, ref) => (
 		<SentimentDissatisfiedIcon {...props} ref={ref} />
 	)),
@@ -61,6 +62,7 @@ const Icons = {
 	Up: forwardRef((props, ref) => (
 		<KeyboardArrowUpIcon {...props} ref={ref} />
 	)),
+	View: forwardRef((props, ref) => <VisibilityIcon {...props} ref={ref} />),
 	WrongLocation: forwardRef((props, ref) => (
 		<WrongLocationIcon {...props} ref={ref} />
 	)),

@@ -70,10 +70,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 50px 50px 50px 50px;
-}
-
-.userCard {
-    width: 100%;
+    margin: 0 0 30px 0;
 }
 
 .cardImage {
@@ -101,18 +98,22 @@ body {
 .backwardsNav {
     position: absolute;
     padding-top: 40px;
-    margin-bottom: -70px
+    margin-bottom: -70px;
 }
 
 
 /* USER PAGE  */
+
+.gridAbout {
+    margin: 0 0 50px 0
+}
 
 .pageInfoCard {
     margin: 30px 0 0 0;
 }
 
 .pageInfoContent {
-    margin: 30px;
+    margin: 30px 30px 0 30px;
 }
 
 .userAvatar {
@@ -135,4 +136,18 @@ body {
 
 .pageSocialContent {
     margin: 10px 0 -30px 0;
+}
+
+.repoPagination {
+    justify-content: center;
+    display: flex;
+}
+
+.dividerNoColor {
+    padding: 10px 0 0 0;
+    display: none;
+}
+
+.topPaddedText {
+    padding: 20px 0 0 0;
 }
