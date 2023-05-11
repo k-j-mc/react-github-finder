@@ -2,11 +2,13 @@ import React from "react";
 
 import { CircularProgress, Typography } from "@mui/material";
 
-const Loader = () => {
+const Loader = (props) => {
+	const { message } = props;
+
 	return (
 		<div className="gridCenterItems">
 			<CircularProgress className="loaderCircle" />
-			<Typography paragraph>Loading...</Typography>
+			<Typography paragraph>{message}</Typography>
 		</div>
 	);
 };

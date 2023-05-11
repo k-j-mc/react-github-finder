@@ -21,7 +21,7 @@ const UserPage = (props) => {
 	return (
 		<Fragment>
 			{loading ? (
-				<Loader />
+				<Loader message="Loading User Information..." />
 			) : !loading && user.login ? (
 				<Fragment>
 					<BackButton />

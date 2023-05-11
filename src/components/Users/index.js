@@ -10,7 +10,7 @@ import UserItem from "./UserItem";
 
 const Users = ({ users, loading, getUser }) => {
 	if (loading) {
-		return <Loader />;
+		return <Loader message="Loading..." />;
 	} else if (!loading && users.length > 0) {
 		return (
 			<Grid container spacing={2} className="cardGrid">
