@@ -28,7 +28,7 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	const themeData = useSelector((state) => state.theme.data);
-	const { data, status, error } = useSelector((state) => state.users);
+	const { data, status } = useSelector((state) => state.users);
 	const user = useSelector((state) => state.singleUser);
 
 	const [loading, setLoading] = useState(true);
