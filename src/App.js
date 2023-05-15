@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { PropTypes } from "prop-types";
+import React, { useContext } from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 import { SnackbarProvider } from "notistack";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getTheme } from "./reducers/themeSlice";
-import { sendNotification } from "./reducers/notificationsSlice";
-
-import { getUsers } from "./reducers/usersSlice";
-import { singleUser } from "./reducers/singleUserSlice";
-
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import ThemeContext from "./context/theme/themeContext";
 
 import Notifications from "./components/Notifications";
 import NavBar from "./components/NavBar";
@@ -25,68 +18,11 @@ import ErrorPage from "./pages/ErrorPage";
 import Icons from "./components/Icons";
 
 const App = () => {
-	const dispatch = useDispatch();
+	const themeContext = useContext(ThemeContext);
 
-	const themeData = useSelector((state) => state.theme.data);
-	const { data, status } = useSelector((state) => state.users);
-	const user = useSelector((state) => state.singleUser);
+	const { theme } = themeContext;
 
-	const [loading, setLoading] = useState(true);
-
-	const [searchQuery, setSearchQuery] = useState("");
-
-	useEffect(() => {
-		dispatch(getTheme());
-		dispatch(getUsers());
-	}, []);
-
-	useEffect(() => {
-		setLoading(true);
-
-		if (status === "succeeded") {
-			setTimeout(() => {
-				setLoading(false);
-			}, 500);
-		}
-		if (data.message) {
-			dispatch(
-				sendNotification({ message: data.message, variant: "error" })
-			);
-		}
-	}, [status, data]);
-
-	useEffect(() => {
-		if (user.status === "succeeded") {
-			setTimeout(() => {
-				setLoading(false);
-			}, 500);
-		}
-		if (user.data.message) {
-			dispatch(
-				sendNotification({
-					message: user.data.message,
-					variant: "error",
-				})
-			);
-		}
-	}, [user]);
-
-	const theme = createTheme(themeData);
-
-	const handleSearch = () => {
-		dispatch(getUsers(searchQuery));
-	};
-
-	const clearUsers = () => {
-		setSearchQuery("");
-		setLoading(true);
-		dispatch(getUsers());
-	};
-
-	const getUser = (e) => {
-		setLoading(true);
-		dispatch(singleUser(e));
-	};
+	const themeData = createTheme(theme);
 
 	return (
 		<BrowserRouter>
@@ -98,34 +34,18 @@ const App = () => {
 				}}
 				autoHideDuration={2000}
 			>
-				<ThemeProvider theme={theme}>
+				<ThemeProvider theme={themeData}>
 					<CssBaseline />
 					<Notifications />
 					<NavBar />
 
 					<Routes>
-						<Route
-							exact
-							path="/"
-							element={
-								<HomePage
-									data={data}
-									clearUsers={clearUsers}
-									handleSearch={handleSearch}
-									loading={loading}
-									searchQuery={searchQuery}
-									setSearchQuery={setSearchQuery}
-									getUser={getUser}
-								/>
-							}
-						/>
+						<Route exact path="/" element={<HomePage />} />
 						<Route exact path="/about" element={<AboutPage />} />
 						<Route
 							exact
 							path="/user/:login"
-							element={
-								<UserPage user={user.data} loading={loading} />
-							}
+							element={<UserPage />}
 						/>
 
 						<Route
@@ -144,16 +64,6 @@ const App = () => {
 			</SnackbarProvider>
 		</BrowserRouter>
 	);
-};
-
-App.defaultProps = {
-	searchQuery: "",
-	loading: true,
-};
-
-App.propTypes = {
-	searchQuery: PropTypes.string.isRequired,
-	loading: PropTypes.bool.isRequired,
 };
 
 export default App;

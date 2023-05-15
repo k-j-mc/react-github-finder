@@ -1,7 +1,9 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment, useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { Card, CardContent, Grid } from "@mui/material";
+
+import GithubContext from "../context/github/githubContext";
 
 import Loader from "../components/Loader";
 import BackButton from "../components/BackButton";
@@ -13,10 +15,19 @@ import ErrorPage from "./ErrorPage";
 
 import Icons from "../components/Icons";
 
-const UserPage = (props) => {
-	const { loading, user } = props;
+const UserPage = () => {
+	const { login } = useParams();
+
+	const githubContext = useContext(GithubContext);
+
+	const { getUser, user, loading } = githubContext;
 
 	const repos = user.repos;
+
+	useEffect(() => {
+		getUser(login);
+		// eslint-disable-next-line
+	}, []);
 
 	return (
 		<Fragment>
@@ -64,7 +75,7 @@ const UserPage = (props) => {
 					</Grid>
 				</Fragment>
 			) : (
-				!user.login && (
+				!user && (
 					<ErrorPage
 						message="Something went wrong"
 						icon={<Icons.Sad className="noResultIcon" />}
@@ -73,10 +84,6 @@ const UserPage = (props) => {
 			)}
 		</Fragment>
 	);
-};
-
-UserPage.propTypes = {
-	loading: PropTypes.bool.isRequired,
 };
 
 export default UserPage;

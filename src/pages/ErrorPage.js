@@ -28,6 +28,7 @@ const ErrorPage = (props) => {
 		}, 1000);
 
 		return () => clearInterval(intervalId);
+		// eslint-disable-next-line
 	}, [timeLeft]);
 
 	const redirectMessage = `Redirecting in: ${timeLeft}`;

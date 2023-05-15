@@ -1,7 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 
 import { Link } from "react-router-dom";
+
+import GithubContext from "../../context/github/githubContext";
 
 import {
 	Avatar,
@@ -12,9 +13,12 @@ import {
 	Typography,
 } from "@mui/material";
 
-const UserItem = ({ user, getUser }) => {
+const UserItem = ({ user }) => {
+	const githubContext = useContext(GithubContext);
+	const { getUser } = githubContext;
+
 	return (
-		<Card className="gridCenterItems">
+		<Card className="gridCenterUserItems">
 			<Avatar
 				alt={user.login}
 				src={user.avatar_url}
@@ -26,6 +30,7 @@ const UserItem = ({ user, getUser }) => {
 					variant="h5"
 					component="div"
 					align="center"
+					className="userLogin"
 				>
 					{user.login}
 				</Typography>
@@ -44,10 +49,6 @@ const UserItem = ({ user, getUser }) => {
 			</CardActions>
 		</Card>
 	);
-};
-
-UserItem.propTypes = {
-	user: PropTypes.object.isRequired,
 };
 
 export default UserItem;

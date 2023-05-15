@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
-import { useDispatch } from "react-redux";
-import { getTheme } from "../../reducers/themeSlice";
+import ThemeContext from "../../context/theme/themeContext";
 
 import { Link } from "react-router-dom";
 
@@ -10,7 +9,7 @@ import { Divider, Menu, MenuItem } from "@mui/material";
 import Icons from "../Icons";
 
 const NavMenu = (props) => {
-	const dispatch = useDispatch();
+	const themeContext = useContext(ThemeContext);
 
 	const { anchorEl, setAnchorEl, openMenu } = props;
 
@@ -22,7 +21,7 @@ const NavMenu = (props) => {
 
 	const handleTheme = () => {
 		setTheme((prevMode) => (prevMode === "Light" ? "Dark" : "Light"));
-		dispatch(getTheme(theme));
+		themeContext.getTheme(theme);
 		handleCloseMenu();
 	};
 

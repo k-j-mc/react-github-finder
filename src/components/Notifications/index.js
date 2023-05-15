@@ -1,20 +1,25 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import NotificationContext from "../../context/notifications/notificationContext";
 
-import { useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
 
 const Notifications = () => {
-	const state = useSelector((state) => state.notifications);
+	const notificationContext = useContext(NotificationContext);
+
+	const { notification } = notificationContext;
+
 	const { enqueueSnackbar } = useSnackbar();
 
 	useEffect(() => {
-		if (state.status === "succeeded") {
-			enqueueSnackbar(state.data.message, {
-				variant: state.data.variant,
+		if (notification) {
+			enqueueSnackbar(notification.message, {
+				variant: notification.variant,
 				preventDuplicate: true,
 			});
 		}
-	}, [state]);
+
+		// eslint-disable-next-line
+	}, [notification]);
 };
 
 export default Notifications;

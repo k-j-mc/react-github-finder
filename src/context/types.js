@@ -1,0 +1,8 @@
+export const GET_THEME = "GET_THEME";
+export const GET_DEFAULT_USERS = "GET_DEFAULT_USERS";
+export const SEARCH_USERS = "SEARCH_USERS";
+export const GET_USER = "GET_USER";
+export const CLEAR_USERS = "CLEAR_USERS";
+export const SET_LOADING = "SET_LOADING";
+export const SET_NOTIFICATION = "SET_NOTIFICATION";
+export const REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION";

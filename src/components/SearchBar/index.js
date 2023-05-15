@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+
+import GithubContext from "../../context/github/githubContext";
 
 import { Button, Grid, IconButton, TextField } from "@mui/material";
 
 import Icons from "../Icons";
 
-const SearchBar = ({
-	clearUsers,
-	handleSearch,
-	searchQuery,
-	setSearchQuery,
-}) => {
+const SearchBar = () => {
+	const githubContext = useContext(GithubContext);
+
+	const [searchQuery, setSearchQuery] = useState(githubContext.searchQuery);
+
+	const handleSearch = () => {
+		githubContext.searchUsers(searchQuery);
+	};
+
+	const clearSearch = () => {
+		setSearchQuery("");
+		githubContext.clearUsers();
+	};
+
 	return (
 		<Grid container spacing={2} className="searchGrid">
 			<Grid item xs={1} />
@@ -24,8 +34,8 @@ const SearchBar = ({
 					InputProps={{
 						endAdornment: (
 							<>
-								{searchQuery !== "" && (
-									<IconButton onClick={clearUsers}>
+								{searchQuery && (
+									<IconButton onClick={clearSearch}>
 										<Icons.Close />
 									</IconButton>
 								)}

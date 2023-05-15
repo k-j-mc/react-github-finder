@@ -27,6 +27,8 @@ const RepoCard = (props) => {
 
 	useEffect(() => {
 		setRepoItems(repos.slice((page - 1) * 5, page * 5));
+
+		// eslint-disable-next-line
 	}, [page]);
 
 	const handleChange = (e, val) => {
